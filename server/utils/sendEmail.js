@@ -12,6 +12,13 @@ const sendEmailJS = async (to_email, subject, html_content, templateIdOverride =
   const templateId = templateIdOverride || process.env.EMAILJS_TEMPLATE_ID;
   const publicKey = process.env.EMAILJS_PUBLIC_KEY;
   const privateKey = process.env.EMAILJS_PRIVATE_KEY;
+  
+  console.log("EMAILJS CHECK:", {
+  serviceId: !!serviceId,
+  templateId: !!templateId,
+  publicKey: !!publicKey,
+  privateKey: !!privateKey
+});
 
   if (!serviceId || !templateId || !publicKey) {
     logger.error("Missing EmailJS credentials or Template ID in .env");

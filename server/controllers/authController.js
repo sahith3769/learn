@@ -125,6 +125,8 @@ exports.login = async (req, res) => {
         { username: { $regex: `^${identifier}$`, $options: 'i' } }
       ]
     });
+    console.log("IDENTIFIER:", identifier);
+console.log("USER FOUND:", user);
 
     if (!user)
       return res.status(400).json({ msg: "Invalid credentials" });
@@ -139,6 +141,7 @@ exports.login = async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("PASSWORD MATCH:", isMatch);
     if (!isMatch)
       return res.status(400).json({ msg: "Invalid credentials" });
 
@@ -307,6 +310,7 @@ exports.updatePassword = async (req, res) => {
     if (!user) return res.status(404).json({ msg: "User not found" });
 
     const isMatch = await bcrypt.compare(oldPassword, user.password);
+    console.log("PASSWORD MATCH:", isMatch);
     if (!isMatch) return res.status(400).json({ msg: "Incorrect old password" });
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
