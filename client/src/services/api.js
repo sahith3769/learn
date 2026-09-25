@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "/api",
+  baseURL: "https://learn-07kf.onrender.com/api",
   withCredentials: true, // MUST HAVE to send cookies
 });
 
@@ -25,7 +25,7 @@ API.interceptors.response.use(
       originalRequest._retry = true;
       try {
         // Attempt to refresh the access token using the HTTPOnly cookie
-        const res = await axios.post("/api/auth/refresh", {}, { withCredentials: true });
+        const res = await axios.post("https://learn-07kf.onrender.com/api/auth/refresh", {}, { withCredentials: true });
         
         // Save the new access token
         localStorage.setItem("token", res.data.token);
