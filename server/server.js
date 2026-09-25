@@ -30,13 +30,24 @@ app.use(
   })
 );
 
+// Security Middleware
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    contentSecurityPolicy: false,
+  })
+);
+
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production'
-    ? ['https://cseplacement.onrender.com']
-    : ['http://localhost:3000'],
+  origin: [
+    "http://localhost:3000",
+    "https://learn-frontend-tpml.onrender.com"
+  ],
   credentials: true,
 }));
+
 app.use(cookieParser());
+
 
 // Rate Limiting
 const limiter = rateLimit({
