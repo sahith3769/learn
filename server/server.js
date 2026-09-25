@@ -31,16 +31,10 @@ app.use(
 );
 
 // Security Middleware
-app.use(
-  helmet({
-    crossOriginResourcePolicy: { policy: "cross-origin" },
-    contentSecurityPolicy: false,
-  })
-);
 
 app.use(cors({
   origin: [
-    "http://localhost:3000",
+    "http://localhost:5173",
     "https://learn-frontend-tpml.onrender.com"
   ],
   credentials: true,
