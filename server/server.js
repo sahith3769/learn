@@ -79,19 +79,9 @@ app.get("/api/test", (req, res) => {
 // Serve Static Assets in Production
 
 // Serve Static Assets in Production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
-
-  app.get(/.*/, (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, "../", "client", "build", "index.html")
-    );
-  });
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running... (Dev Mode)");
-  });
-}
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
 
 // Error Handling Middleware
 app.use(errorHandler);
