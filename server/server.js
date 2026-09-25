@@ -63,6 +63,16 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Health check for UptimeRobot / monitoring
 app.get("/health", (req, res) => res.status(200).json({ status: "ok" }));
 
+// Test endpoint
+app.get("/api/test", (req, res) => {
+  res.json({
+    message: "SmartPlacement backend is working!",
+    environment: process.env.NODE_ENV
+  });
+});
+
+// Serve Static Assets in Production
+
 // Serve Static Assets in Production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
